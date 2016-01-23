@@ -5,13 +5,27 @@ http://www.sitepoint.com/kickstart-your-angularjs-development-with-yeoman-grunt-
   #Terminal
   npm install -g yo grunt-cli bower
   npm install -g generator-angular
-  
-  
-  
+  brew install ruby
+  sudo gem install compass
+  npm install karma --save-dev
+  brew install phantomjs
+  npm install karma jasmine-core phantomjs --save-dev
+  git config --global url."https://".insteadOf git:// #I don't know why but it works.
+  yo angular #This didn't work so well, so I used create new project in webstorm with yeoman instead. See below
+
 Setup webstorm with bower and yeoman
   http://blog.jetbrains.com/webstorm/2014/04/using-bower-in-webstorm/
   Now you can create new projects with yeoman
   https://www.jetbrains.com/webstorm/help/creating-a-project-using-yeoman-generator.html
-  
-Add JWS and JWE 
+
+Open the application in a browser:
+  grunt serve
+
+To build the application run:
+  grunt build
+
+Test the application:
+  grunt test
+
+Add JWS and JWE
   https://github.com/square/js-jose
