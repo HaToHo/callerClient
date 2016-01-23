@@ -1,0 +1,17 @@
+http://www.sitepoint.com/kickstart-your-angularjs-development-with-yeoman-grunt-and-bower/
+  -http://yeoman.io/
+  -http://bower.io/
+  -http://gruntjs.com/
+  #Terminal
+  npm install -g yo grunt-cli bower
+  npm install -g generator-angular
+  
+  
+  
+Setup webstorm with bower and yeoman
+  http://blog.jetbrains.com/webstorm/2014/04/using-bower-in-webstorm/
+  Now you can create new projects with yeoman
+  https://www.jetbrains.com/webstorm/help/creating-a-project-using-yeoman-generator.html
+  
+Add JWS and JWE 
+  https://github.com/square/js-jose
