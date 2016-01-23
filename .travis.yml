@@ -8,5 +8,4 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
   - 'gem install compass'
-  - 'npm install karma --save-dev'
   - 'npm install karma jasmine-core phantomjs --save-dev'
