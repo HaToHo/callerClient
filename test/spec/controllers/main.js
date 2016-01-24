@@ -17,7 +17,15 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.awesomeThings.length).toBe(3);
+  describe('$scope.setView', function() {
+    it('set the current view', function() {
+      expect(scope.view).toEqual('home');
+      scope.setView("setup");
+      expect(scope.view).toEqual('setup');
+    });
   });
+
+  /*it('should attach a list of awesomeThings to the scope', function () {
+    expect(MainCtrl.awesomeThings.length).toBe(3);
+  });*/
 });
