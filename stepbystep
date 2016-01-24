@@ -29,6 +29,8 @@ Test the application:
 
 Add JWS and JWE
   https://github.com/square/js-jose
-'
 
-'
+Läsa in nyckel:
+http://www.html5rocks.com/en/tutorials/file/dndfiles/
+
+
