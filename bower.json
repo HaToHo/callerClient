@@ -5,7 +5,8 @@
     "angular": "^1.4.0",
     "bootstrap-sass-official": "^3.2.0",
     "angular-animate": "^1.4.0",
-    "js-jose": "https://github.com/square/js-jose.git"
+    "cryptojslib": "^3.1.2",
+    "jsrsasign": "^5.0.5"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
@@ -13,6 +14,9 @@
   "appPath": "app",
   "moduleName": "callerClientApp",
   "overrides": {
+    "jsrsasign": {
+      "main": ["jsrsasign-latest-all-min.js", "jws-3.2.js", "ext/json-sans-eval-min.js"]
+    },
     "bootstrap": {
       "main": [
         "less/bootstrap.less",
