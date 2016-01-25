@@ -14,6 +14,9 @@
   "appPath": "app",
   "moduleName": "callerClientApp",
   "overrides": {
+    "cryptojslib": {
+      "main": ["rollups/aes.js"]
+    },
     "jsrsasign": {
       "main": ["jsrsasign-latest-all-min.js", "jws-3.2.js", "ext/json-sans-eval-min.js"]
     },
