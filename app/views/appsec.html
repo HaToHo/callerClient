@@ -1,0 +1,25 @@
+<div class="jumbotron">
+  <h2>Security</h2>
+</div>
+<form>
+  <fieldset class="form-group">
+    <label for="serverurl">Server url</label>
+    <input id="serverurl" name="serverurl" class="form-control" type="text" ng-model="security.serverurl" />
+    <small class="text-muted">URL to the caller server.</small>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="appid">Application id</label>
+    <input id="appid" name="appid" class="form-control" type="text" ng-model="security.appid" />
+    <small class="text-muted">Application id is used to identify your application at the server. All raspberry servers are registered to an App ID.</small>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="sharedsecret">Shared secret</label>
+    <input id="sharedsecret" name="sharedsecret" class="form-control" type="text" ng-model="security.sharedsecret"/>
+    <small class="text-muted">Shared secret used for encryption with the server. Let's not trust https.</small>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="pkeypem">RSA PEM Private key</label>
+    <textarea rows="8" class="form-control" id="pkeypem" name="pkeypem" ng-model="security.pkeypem"></textarea>
+    <small class="text-muted">This private key is used for signing JWT's to the server.</small>
+  </fieldset>
+</form>

@@ -10,6 +10,57 @@
 
 angular.module('callerClientApp')
   .controller('MyRaspCtrl', ['$scope', function($scope) {
+    var vm = this;
+    $scope.action = "list";
+    //localStorage.removeItem("raspberryData");
+    $scope.raspberryData = localStorage.getItem("raspberryData")?JSON.parse(localStorage.getItem("raspberryData")):[];
+    $scope.setAction = function(view) {
+      $scope.action = view;
+      $scope.raspberry = {
+        id: "",
+        name: "",
+        sharedsecret: "",
+        pkeypem: ""
+      };
+    };
+
+    $scope.verifyNotUniqueName = function(form, name){
+      if (!$scope.raspberry.name) {
+        return false;
+      }
+      name.$invalid = false;
+      angular.forEach($scope.raspberryData, function(item) {
+        if (item["name"] == $scope.raspberry.name) {
+          form.$invalid = true;
+          name.$invalid = true;
+        }
+      });
+      return name.$invalid;
+    };
+
+    $scope.verifyNotUniqueId = function(form, id){
+      if (!$scope.raspberry.id) {
+        return false;
+      }
+      id.$invalid = false;
+      angular.forEach($scope.raspberryData, function(item) {
+        if (item["id"] == $scope.raspberry.id) {
+          form.$invalid = true;
+          id.$invalid = true;
+        }
+      });
+      return id.$invalid;
+    };
+
+    $scope.cancelRaspberry = function() {
+      $scope.action = "list";
+    };
+
+    $scope.addRaspberry = function() {
+      $scope.action = "list";
+      $scope.raspberryData.push($scope.raspberry);
+      localStorage.setItem("raspberryData", JSON.stringify($scope.raspberryData));
+    };
 
     $scope.sPemPrvKey = "-----BEGIN RSA PRIVATE KEY-----\n"+
       "MIIEogIBAAKCAQEA4qiw8PWs7PpnnC2BUEoDRcwXF8pq8XT1/3Hc3cuUJwX/otNe\n"+

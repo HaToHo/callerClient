@@ -1,4 +1,54 @@
 <div class="jumbotron">
-  <h1>My raspberries</h1>
-  <button type="button" ng-click="doVerify(genJWS())">ClickMe</button>
+  <h2>My raspberries</h2>
+</div>
+<button class="pull-right" type="button" ng-click="doVerify(genJWS())">ClickMe</button>
+<div ng-switch on="action" >
+  <div ng-switch-when="add">
+    <form name="addForm">
+      <fieldset class="form-group">
+        <label for="name">Name</label>
+        <input id="name" name="name" class="form-control" type="text" ng-model="raspberry.name" required/>
+        <p ng-show="addForm.name.$invalid && !addForm.name.$pristine && !raspberry.name" class="help-block">This field is required!</p>
+        <p ng-show="verifyNotUniqueName(addForm, addForm.name)" class="help-block">The name already exists!</p>
+        <small class="text-muted">Give your raspeberry a name.</small>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="id">Raspberry id</label>
+        <input id="id" name="id" class="form-control" type="text" ng-model="raspberry.id" required/>
+        <p ng-show="addForm.id.$invalid && !addForm.id.$pristine && !raspberry.id" class="help-block">This field is required!</p>
+        <p ng-show="verifyNotUniqueId(addForm, addForm.id)" class="help-block">The id already exists!</p>
+        <small class="text-muted">Raspberry id is used to identify your raspberry at the server.</small>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="sharedsecret">Shared secret</label>
+        <input id="sharedsecret" name="sharedsecret" class="form-control" type="text" ng-model="raspberry.sharedsecret" required/>
+        <p ng-show="addForm.sharedsecret.$invalid && !addForm.sharedsecret.$pristine" class="help-block">This field is required!</p>
+        <small class="text-muted">Shared secret used for encryption with the server. Let's not trust https.</small>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="pkeypem">RSA PEM certificate</label>
+        <textarea rows="8" class="form-control" id="certpem" name="certpem" ng-model="raspberry.certpem" required></textarea>
+        <p ng-show="addForm.certpem.$invalid && !addForm.certpem.$pristine" class="help-block">This field is required!</p>
+        <small class="text-muted">This certificate is used for verifying the JWT's from the raspberry.</small>
+      </fieldset>
+      <button ng-click="cancelRaspberry()" class="btn btn-primary pull-right">Cancel</button>
+      <button ng-click="addRaspberry()" class="btn btn-primary pull-right" ng-disabled="addForm.$invalid">Add</button>
+    </form>
+
+  </div>
+  <div ng-switch-when="list">
+    <a ng-click="setAction('add')" href="#/"><span class="glyphicon glyphicon-plus"></span> Add new raspberry</a>
+    <div class="list-group">
+      <div ng-repeat="model in raspberryData track by model.id">
+        <a href="#" class="list-group-item active">
+          <h4 class="list-group-item-heading">{{model.name}}</h4>
+          <p class="list-group-item-text">...dfdsfsdfsdf
+          dsfsdf
+          dsfdsf
+          </p>
+        </a>
+        <hr />
+      </div>
+    </div>
+  </div>
 </div>
