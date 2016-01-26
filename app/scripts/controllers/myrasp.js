@@ -9,11 +9,12 @@
  */
 
 angular.module('callerClientApp')
-  .controller('MyRaspCtrl', ['$scope', function($scope) {
+  .controller('MyRaspCtrl', function($scope, storage) {
     var vm = this;
     $scope.action = "list";
+
     //localStorage.removeItem("raspberryData");
-    $scope.raspberryData = localStorage.getItem("raspberryData")?JSON.parse(localStorage.getItem("raspberryData")):[];
+    $scope.raspberryData = localStorage.getItem("raspberryData")?JSON.parse(storage.getItem("raspberryData")):[];
     $scope.setAction = function(view) {
       $scope.action = view;
       $scope.raspberry = {
@@ -59,7 +60,7 @@ angular.module('callerClientApp')
     $scope.addRaspberry = function() {
       $scope.action = "list";
       $scope.raspberryData.push($scope.raspberry);
-      localStorage.setItem("raspberryData", JSON.stringify($scope.raspberryData));
+      storage.setItem("raspberryData", JSON.stringify($scope.raspberryData));
     };
 
     $scope.sPemPrvKey = "-----BEGIN RSA PRIVATE KEY-----\n"+
@@ -163,7 +164,7 @@ angular.module('callerClientApp')
     }
 
 
-  }]);
+  });
 
 
 

@@ -8,30 +8,31 @@
  * Controller of the callerClientApp
  */
 angular.module('callerClientApp')
-  .controller('AppsecCtrl', ['$scope', function($scope) {
+  .controller('AppsecCtrl', function($scope, storage) {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
       // Great success! All the File APIs are supported.
     } else {
       alert('The File APIs are not fully supported in this browser.');
     }
-    if (!localStorage.getItem("appid")){
-
-    }
+    //localStorage.removeItem("serverurl");
+    //localStorage.removeItem("appid");
+    //localStorage.removeItem("sharedsecret");
+    //localStorage.removeItem("pkeypem");
     $scope.security = {
-      serverurl: localStorage.getItem("serverurl")?localStorage.getItem("serverurl"):"",
-      appid: localStorage.getItem("appid")?localStorage.getItem("appid"):"",
-      sharedsecret: localStorage.getItem("sharedsecret")?localStorage.getItem("sharedsecret"):"",
-      pkeypem: localStorage.getItem("pkeypem")?localStorage.getItem("pkeypem"):""
+      serverurl: localStorage.getItem("serverurl")?storage.getItem("serverurl"):"",
+      appid: localStorage.getItem("appid")?storage.getItem("appid"):"",
+      sharedsecret: localStorage.getItem("sharedsecret")?storage.getItem("sharedsecret"):"",
+      pkeypem: localStorage.getItem("pkeypem")?storage.getItem("pkeypem"):""
 
     };
 
     $scope.$watch('security', function(newValue, oldValue) {
       if (newValue != oldValue) {
-        localStorage.setItem("serverurl", newValue['serverurl']);
-        localStorage.setItem("appid", newValue['appid']);
-        localStorage.setItem("sharedsecret", newValue['sharedsecret']);
-        localStorage.setItem("pkeypem", newValue['pkeypem']);
+        storage.setItem("serverurl", newValue['serverurl']);
+        storage.setItem("appid", newValue['appid']);
+        storage.setItem("sharedsecret", newValue['sharedsecret']);
+        storage.setItem("pkeypem", newValue['pkeypem']);
       }
     }, true);
 
-  }]);
+  });

@@ -21,8 +21,6 @@
 
     <!-- Add your site or application content here -->
     <div ng-controller="MainCtrl">
-      <button type="button" ng-click="alertme()">ClickMe</button>
-
       <div class="header">
         <div class="navbar navbar-default" role="navigation">
           <div class="container">
@@ -42,8 +40,9 @@
 
               <ul class="nav navbar-nav" ng-active>
                 <li class="active" ng-click="setActive($event)"><a href="#/" ng-click="setView('home')">Home</a></li>
-                <li ng-click="setActive($event)"><a ng-href="#/" ng-click="setView('appsec')">Security</a></li>
-                <li ng-click="setActive($event)"><a ng-href="#/" ng-click="setView('myrasp')">My raspbberries</a></li>
+                <li ng-show="verifyLogin()" ng-click="setActive($event)"><a ng-href="#/" ng-click="setView('appsec')">Security</a></li>
+                <li ng-show="verifyLogin()" ng-click="setActive($event)"><a ng-href="#/" ng-click="setView('myrasp')">My raspbberries</a></li>
+                <li ng-show="verifyLogin()" ng-click="logout()"><a ng-href="#/">Logout</a></li>
               </ul>
             </div>
           </div>
@@ -52,9 +51,21 @@
 
     <div class="container">
       <div ng-switch on="view" >
-        <div ng-switch-when="home"><div ng-include="'views/home.html'" ng-controller="HomeCtrl"></div></div>
-        <div ng-switch-when="appsec"><div ng-include="'views/appsec.html'" ng-controller="AppsecCtrl"></div></div>
-        <div ng-switch-when="myrasp"><div ng-include="'views/myrasp.html'" ng-controller="MyRaspCtrl"></div></div>
+        <div ng-show="!verifyLogin()">
+          <form name="loginForm">
+            <fieldset class="form-group">
+              <label for="password">Password</label>
+              <input id="password" name="password" class="form-control" type="password" ng-model="password" required/>
+              <p ng-show="loginForm.$invalid" class="help-block">This field is required and must be correct!</p>
+              <small class="text-muted">You need to give your password to unlock and decrypt the application.
+                At first login give your password, it can never be recovered so don't forget it!</small>
+            </fieldset>
+          </form>
+          <button ng-click="login(loginForm)" class="btn btn-primary pull-right" ng-disabled="loginForm.$invalid">Login</button>
+        </div>
+        <div ng-show="verifyLogin()" ng-switch-when="home"><div ng-include="'views/home.html'" ng-controller="HomeCtrl"></div></div>
+        <div ng-show="verifyLogin()" ng-switch-when="appsec"><div ng-include="'views/appsec.html'" ng-controller="AppsecCtrl"></div></div>
+        <div ng-show="verifyLogin()" ng-switch-when="myrasp"><div ng-include="'views/myrasp.html'" ng-controller="MyRaspCtrl"></div></div>
       </div>
     </div>
 
